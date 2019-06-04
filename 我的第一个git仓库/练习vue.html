@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    /* .list li {
+        float: left;
+        list-style: none;
+        border: 1px solid red;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+    }
+
+    .bg {
+        background-color: red;
+    } */
+
+
+
+
+</style>
+
+<body>
+    <!-- <div id="res">
+        <h1>信息：{{num}}</h1>
+        <a v-bind:href="ull">百度</a>
+        <button @click="change">变更</button>
+    </div> -->
+
+
+
+    <!-- <h1>methods Option</h1>
+    <hr>
+    <div id="app">
+        {{ a }}
+        <p><button @click="add(2)">add</button></p>
+    </div> -->
+
+
+    <div id="arr">
+        <h1>{{total}}</h1>
+        <table>
+            <thead>
+                <th></th>
+            </thead>
+        </table>
+
+
+
+        <!-- <input type="text" v-model="res"> -->
+        <!-- <button @click="num">添加</button> -->
+        <!-- <ul>
+            <li v-for="(val,index) in list">
+                <span>{{val}}</span>
+                <button @click="rm(index)">删除</button>
+            </li>
+        </ul> -->
+        <!-- <h1>{{res}}</h1> -->
+
+
+        <!-- <ul class="list">
+            <li @click="changeBg(ind)" v-bind:class="val" v-for="(val,ind) in bglist">{{ind+1}}</li>
+        </ul> -->
+    </div>
+    <script src="vue.js"></script>
+    <script>
+
+        new Vue({
+            el: "#arr",
+            data: {
+                bglist: [
+                    { bg: true },
+                    { bg: false },
+                    { bg: false },
+                    { bg: false },
+                    { bg: false },
+                ],
+                bgNow: 0
+            },
+            methods: {
+                changeBg: function (ind) {
+                    this.bglist[ind].bg = true;
+                    this.bglist[this.bgNow].bg = false;
+                    this.bgNow = ind;
+                }
+            }
+        })
+
+
+
+
+
+
+
+
+
+
+        // new Vue({
+        //     el:'#arr',
+        //     data:{
+        //         res:" ",
+        //         list:["文本","练习","数据","练习","完"]
+
+        //     },
+        //     methods:{
+        //         rm:function(ind){
+        //             this.list.splice(ind,1)
+        //         }
+        //     }
+        // })
+
+
+
+
+    // new Vue({
+    //     el:'#res',
+    //     data:{
+    //         num:'vue',
+    //         ull:'http://baidu.com'
+    //     },
+    //     methods:{
+    //         change:function(){
+
+    //             this.num='jquery'
+    //         }
+    //     }
+    // })
+
+
+
+    // var app=new Vue({
+    //         el:'#app',
+    //         data:{
+    //             a:1
+    //         },
+    //         methods:{
+    //             add:function(num){
+    //                 if(num!=''){this.a+=num}
+    //                 else{this.a++}
+    //             }
+    //         }
+    //     })
+    </script>
+</body>
+
+</html>
