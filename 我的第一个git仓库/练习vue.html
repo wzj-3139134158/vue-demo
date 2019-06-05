@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="yangshi.css">
 </head>
 <style>
     /* .list li {
@@ -21,10 +22,6 @@
     .bg {
         background-color: red;
     } */
-
-
-
-
 </style>
 
 <body>
@@ -45,11 +42,27 @@
 
 
     <div id="arr">
-        <h1>{{total}}</h1>
-        <table>
+        <h1>总价：{{total}}</h1>
+        <table class="table table-bordered">
             <thead>
-                <th></th>
+                <th>名称</th>
+                <th>单价</th>
+                <th>数量</th>
+                <th>总价</th>
             </thead>
+            <tbody>
+                <tr v-for="(val,ind) in fruitlist">
+                    <td>{{val.name}}</td>
+                    <td>{{val.price}}</td>
+                    <td>
+                        <button @click="sub(ind)">-</button>
+                        <span>{{val.count}}</span>
+                        <button @click="add(ind)">+</button>
+                    </td>
+                    <td>{{val.sumPrice}}</td>
+                </tr>
+
+            </tbody>
         </table>
 
 
@@ -73,25 +86,83 @@
     <script>
 
         new Vue({
-            el: "#arr",
+            el: '#arr',
             data: {
-                bglist: [
-                    { bg: true },
-                    { bg: false },
-                    { bg: false },
-                    { bg: false },
-                    { bg: false },
+                fruitlist: [
+                    {
+                        name: "香蕉",
+                        price: 9,
+                        count: 0,
+                        sumPrice: 0
+                    },
+                    {
+                        name: "苹果",
+                        price: 7,
+                        count: 0,
+                        sumPrice: 0
+                    },
+                    {
+                        name: "葡萄",
+                        price: 5,
+                        count: 0,
+                        sumPrice: 0,
+                    }
+
                 ],
-                bgNow: 0
+                total: 0
             },
             methods: {
-                changeBg: function (ind) {
-                    this.bglist[ind].bg = true;
-                    this.bglist[this.bgNow].bg = false;
-                    this.bgNow = ind;
+                add: function (ind) {
+                    var count = ++this.fruitlist[ind].count;
+                    var price = this.fruitlist[ind].price;
+                    this.fruitlist[ind].sumPrice = (count * price).toFixed(2);
+                    this.getTotal();
+                },
+                sub: function (ind) {
+                    if (this.fruitlist[ind].count > 0) {
+                        var count = --this.fruitlist[ind].count;
+                        var price = this.fruitlist[ind].price;
+                        this.fruitlist[ind].sumPrice = (count * price).toFixed(2);
+                    }
+                    this.getTotal();
+                },
+                getTotal: function () {
+                    var len = this.fruitlist.length;
+                    var sum = 0;
+                    for (var i = 0; i < len; i++) {
+                        sum += Number(this.fruitlist[i].sumPrice);
+                    }
+                    this.total = sum.toFixed(2);
                 }
             }
         })
+
+
+
+
+
+
+
+        // new Vue({
+        //     el: "#arr",
+        //     data: {
+        //         bglist: [
+        //             { bg: true },
+        //             { bg: false },
+        //             { bg: false },
+        //             { bg: false },
+        //             { bg: false },
+        //         ],
+        //         bgNow: 0
+        //     },
+        //     methods: {
+        //         changeBg: function (ind) {
+        //             this.bglist[ind].bg = true;
+        //             this.bglist[this.bgNow].bg = false;
+        //             this.bgNow = ind;
+        //         }
+        //     }
+        // })
 
 
 
